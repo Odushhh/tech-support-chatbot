@@ -1,0 +1,17 @@
+pytest
+StackAPI
+PyGithub
+GitPython
+huggingface-hub
+transformers
+sentence-transformers
+python-dotenv
+pydantic
+scikit-learn
+numpy 
+torch
+python-jwt
+jwt
+python-jose
+faiss-cpu
+cryptography

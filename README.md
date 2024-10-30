@@ -1,6 +1,6 @@
 # Customer Service Chatbot for Tech Support
 
-## For all software-related issues, troubleshooting needs, and general programming guidance (forked data from StackOverflow & GitHub Issues)
+For all software-related issues, troubleshooting needs, and general programming guidance (forked data from StackOverflow & GitHub Issues)
 
 ## Overview
 

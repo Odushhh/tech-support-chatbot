@@ -1,5 +1,5 @@
 # Customer Service Chatbot for Tech Support 
-Still a Work in Progress - don't stress lemme finish it first :)
+## Still a Work in Progress - don't stress lemme finish it first :)
 
 For all software-related issues, troubleshooting needs, and general programming guidance (forked data from StackOverflow & GitHub Issues)
 

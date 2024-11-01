@@ -5,14 +5,15 @@ For all software-related issues, troubleshooting needs, and general programming 
 
 ## Overview
 
-The chatbot utilizes Natural Language Processing (NLP) to understand user queries and fetch relevant information from multiple platforms.
+This chatbot utilizes a few NLP techniques to understand user queries and fetch relevant information from multiple platforms.
 
-This project integrates data sources like GitHub Issues and StackOverflow to provide info on tech-related problems experienced by beginners and experts alike.
+Data is 'forked' from sources like GitHub Issues and StackOverflow to provide answers to tech-related problems.
+
+All types of devs experience such issues - check image.
 
 ![images](https://github.com/user-attachments/assets/891009b0-6fed-483d-95af-9e2272bcf573)
 
-P.S: This is my final year CS project - I'm tryna get all 12 credits for this. 
-
+P.S: This is my final year CS project btw
 Only the backend works for now, but A LOT of debugging is needed expeditiously.
 
 ## Table of Contents

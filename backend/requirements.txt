@@ -8,6 +8,7 @@ transformers
 sentence-transformers
 python-dotenv
 pydantic
+pydantic_settings
 scikit-learn
 numpy 
 torch

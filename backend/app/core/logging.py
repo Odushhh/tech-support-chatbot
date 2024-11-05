@@ -4,7 +4,7 @@ from pathlib import Path
 from logging.handlers import RotatingFileHandler, TimedRotatingFileHandler
 import json
 from datetime import datetime
-from core.config import settings
+from backend.app.core.config import settings
 
 class JSONFormatter(logging.Formatter):
     """
@@ -136,11 +136,10 @@ def log_function_call(func):
         logger.debug(f"Function {func.__name__} completed")
         return result
     return wrapper
-
+    
+'''
+# Configure Sentry for error tracking (if enabled in settings)
 def configure_sentry():
-    """
-    Configure Sentry for error tracking (if enabled in settings)
-    """
     if settings.SENTRY_DSN:
         import sentry_sdk
         from sentry_sdk.integrations.logging import LoggingIntegration
@@ -161,6 +160,7 @@ def configure_sentry():
 # Initialize logging when this module is imported
 setup_logging()
 configure_sentry()
+'''
 
 # Example usage
 if __name__ == "__main__":

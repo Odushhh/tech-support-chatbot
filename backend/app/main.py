@@ -20,9 +20,9 @@ setup_logging()
 logger = logging.getLogger(__name__)
 
 app = FastAPI(
-    title=settings.PROJECT_NAME,
-    description=settings.PROJECT_DESCRIPTION,
-    version=settings.PROJECT_VERSION,
+    title=settings.APP_NAME,
+    description=settings.APP_DESCRIPTION,
+    version=settings.APP_VERSION,
     docs_url="/docs" if settings.ENVIRONMENT != "production" else None,
     redoc_url="/redoc" if settings.ENVIRONMENT != "production" else None,
 )
@@ -30,14 +30,14 @@ app = FastAPI(
 # CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=settings.ALLOWED_ORIGINS,
+    allow_origins=settings.CORS_ORIGINS,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
 # Mount static files
-app.mount("/static", StaticFiles(directory="static"), name="static")
+app.mount("tech-support-chatbot-v2/backend/app/static", StaticFiles(directory="tech-support-chatbot-v2/backend/app/static"), name="static")
 
 # Include API routes
 app.include_router(api_router, prefix="/api")

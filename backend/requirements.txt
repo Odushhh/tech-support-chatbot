@@ -1,4 +1,5 @@
 pytest
+pytest-xdist 	# if you're running tests on GH Codespaces
 StackAPI
 PyGithub
 GitPython

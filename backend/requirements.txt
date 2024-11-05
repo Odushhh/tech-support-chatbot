@@ -15,3 +15,4 @@ jwt
 python-jose
 faiss-cpu
 cryptography
+fastapi

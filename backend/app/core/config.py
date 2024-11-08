@@ -10,6 +10,7 @@ class Settings(BaseModel):
     # Application Settings
     APP_NAME: str = Field("Tech Support Chatbot")
     APP_VERSION: str = Field("Version 1.0.0")
+    APP_DESCRIPTION: str = Field("Chatbot leverages data from GitHub Issues & StackOverflow to provide assistance on software-related issues, troubleshooting steps, and overall programming guidance.")
     DEBUG: bool = Field(default=False, json_schema_extra={"env":"DEBUG"})
     ENVIRONMENT: str = Field("Development")
 
@@ -44,13 +45,14 @@ class Settings(BaseModel):
     # NLP Model Settings
     NLP_MODEL_PATH: str = Field(default=os.getenv("NLP_MODEL_PATH"), json_schema_extra={"env":"NLP_MODEL_PATH"})
 
-    INTENT_CLASSIFICATION_MODEL: str = Field(default=os.getenv("INTENT_CLASSIFICATION_MODEL"), json_schema_extra={"env":"INTENT_CLASSIFICATION_MODEL"})
+    INTENT_CLASSIFIER: str = Field(default=os.getenv("INTENT_CLASSIFICATION_MODEL"), json_schema_extra={"env":"INTENT_CLASSIFICATION_MODEL"})
     INTENT_CLASSIFICATION_THRESHOLD: float = Field(default=os.getenv("INTENT_CLASSIFICATION_THRESHOLD"), json_schema_extra={"env":"INTENT_CLASSIFICATION_THRESHOLD"})
     CUSTOM_INTENT_MODEL: str = Field(default=os.getenv("CUSTOM_INTENT_MODEL"), json_schema_extra={"env":"CUSTOM_INTENT_MODEL"})
 
     FEATURE_EXTRACTION_MODEL: str = Field(default=os.getenv("FEATURE_EXTRACTION_MODEL"), json_schema_extra={"env":"FEATURE_EXTRACTION_MODEL"})
     TOKENIZER: str = Field(default=os.getenv("TOKENIZER"), json_schema_extra={"env":"TOKENIZER"})
     NER_MODEL: str = Field(default=os.getenv("NER_MODEL"), json_schema_extra={"env":"NER_MODEL"})  
+    STOPWORDS: str = Field(default=os.getenv("STOPWORDS"), json_schema_extra={"env:": "STOPWORDS"})
     
     SUMMARIZATION_MODEL: str = Field(default=os.getenv("SUMMARIZATION_MODEL"), json_schema_extra={"env":"SUMMARIZATION_MODEL"})
     SENTENCE_TRANSFORMER_MODEL: str = Field(default=os.getenv("SENTENCE_TRANSFORMER_MODEL"), json_schema_extra={"env":"SENTENCE_TRANSFORMER_MODEL"})
@@ -68,10 +70,12 @@ class Settings(BaseModel):
     RATE_LIMIT_PERIOD: int = Field(default=os.getenv("RATE_LIMIT_PERIOD"), json_schema_extra={"env":"RATE_LIMIT_PERIOD"})  # Period in seconds
 
     # Logging
+    LOG_DIR: str = Field(default=os.getenv("LOG_DIR"), json_schema_extra={"env":"/home/adrian-oduma/Desktop/Projects/ts-chatbot-v2/backend/app"}        # Ubuntu file path
+    LOG_DIR: str = Field(default=os.getenv("LOG_DIR"), json_schema_extra={"env":"/home/adrian-oduma/Desktop/Projects/ts-chatbot-v2/backend/app"}        # Windows file path
+
     LOG_LEVEL: str = Field(default=os.getenv("LOG_LEVEL"), json_schema_extra={"env":"LOG_LEVEL"})
     LOG_FILE_PATH: Optional[str] = Field(default=os.getenv("LOG_FILE_PATH"), json_schema_extra={"env":"LOG_FILE_PATH"})
 
-    '''
     # Security
     SECRET_KEY: str = Field(default=os.getenv(""), env="SECRET_KEY")
     ALLOWED_HOSTS: List[str] = Field(default=["*"], json_schema_extra={"env": ["ALLOWED_HOSTS"]})
@@ -84,7 +88,6 @@ class Settings(BaseModel):
             return [item.strip() for item in v.split(",")]
         return v
 
-    '''
 
     model_config = ConfigDict(env_file=".env")
 

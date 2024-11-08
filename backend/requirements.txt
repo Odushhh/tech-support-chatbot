@@ -9,6 +9,10 @@ sentence-transformers
 python-dotenv
 pydantic
 pydantic_settings
+<<<<<<< Updated upstream
+=======
+passlib
+>>>>>>> Stashed changes
 scikit-learn
 numpy 
 torch
@@ -18,4 +22,9 @@ python-jose
 faiss-cpu
 cryptography
 fastapi
+<<<<<<< Updated upstream
 passlib
+=======
+uvicorn
+httpx
+>>>>>>> Stashed changes

@@ -136,9 +136,14 @@ def log_function_call(func):
         logger.debug(f"Function {func.__name__} completed")
         return result
     return wrapper
+<<<<<<< Updated upstream
     
 '''
 # Configure Sentry for error tracking (if enabled in settings)
+=======
+
+'''
+>>>>>>> Stashed changes
 def configure_sentry():
     if settings.SENTRY_DSN:
         import sentry_sdk

@@ -8,14 +8,14 @@ from backend.app.data.fetcher import DataFetcher
 def github_data():
     return [
         {
-            "id": 1,
-            "title": "Test GitHub Issue",
-            "html_url": "https://api.github.com/search/issues",
-            "body": "This is a test GitHub issue",
-            "state": "open",
-            "comments": 3,
-            "created_at": "2023-01-01T00:00:00Z",
-            "updated_at": "2023-01-02T00:00:00Z"
+	    "id": 1981998226,
+            "title": "🚩 add flag to only install riscv if user wants",
+            "html_url": "https://github.com/esp-rs/espup/pull/391",
+            "body": "null",
+            "state": "closed",
+            "comments": 7,
+            "created_at": "2023-11-07T18:42:08Z",
+            "updated_at": "2024-01-02T00:00:25Z"
         }
     ]
 
@@ -23,10 +23,12 @@ def github_data():
 def stackoverflow_data():
     return [
         {
-            "question_id": 1,
-            "title": "How to use Python?",
-            "link": "https://api.stackexchange.com/2.2/search?site=stackoverflow",
-            "score": 5
+            "question_id": 231767,
+	    "title": "What does the &quot;yield&quot; keyword do in Python?",
+            "link": "https://stackoverflow.com/questions/231767/what-does-the-yield-keyword-do-in-python",
+            "creation_date": "1224800471",
+            "tags": ["python", "iterator", "generator", "yield"],
+            "score": 13007
         }
     ]
 

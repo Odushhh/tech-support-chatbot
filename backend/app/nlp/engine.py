@@ -1,7 +1,7 @@
 import os
 import logging
 from typing import List, Dict, Any, Tuple
-from transformers import pipeline, DistilBertTokenizerFast, AutoModelForMaskedLM, AutoModelForSequenceClassification, AutoModelForQuestionAnswering, AutoModelForSeq2SeqLM
+from transformers import pipeline, DistilBertTokenizerFast, AutoModelForMaskedLM, AutoModelForSequenceClassification, AutoModelForQuestionAnswering, AutoModelForSeq2SeqLM, AutoModelForTokenClassification
 from sentence_transformers import SentenceTransformer, util
 import torch
 import numpy as np
@@ -18,31 +18,35 @@ class NLPEngine:
         # self.summarizer = pipeline("summarization", model=settings.SUMMARIZATION_MODEL)
         # self.sentence_transformer = SentenceTransformer(settings.SENTENCE_TRANSFORMER_MODEL)
 
-        self.nlp_model = AutoModelForMaskedLM.from_pretrained("distilbert/distilroberta-base")
-        self.intent_classifier = AutoModelForSequenceClassification.from_pretrained(os.getenv("FEATURE_EXTRACTION_MODEL"))
+        self.nlp_model = AutoModelForMaskedLM.from_pretrained(os.getenv("NLP_MODEL"))
+        self.intent_classifier = AutoModelForSequenceClassification.from_pretrained(os.getenv("INTENT_CLASSIFIER"))
         self.tokenizer = DistilBertTokenizerFast.from_pretrained(os.getenv("TOKENIZER"))
         self.qa_model = AutoModelForQuestionAnswering.from_pretrained(os.getenv("QA_MODEL"))
         self.sentiment_analyzer = AutoModelForSequenceClassification.from_pretrained(os.getenv("SENTIMENT_ANALYSIS_MODEL"))
         self.summarizer = AutoModelForSeq2SeqLM.from_pretrained(os.getenv("SUMMARIZATION_MODEL"))
         self.sentence_transformer = SentenceTransformer(os.getenv("SENTENCE_TRANSFORMER_MODEL"))
+        self.entity_recognizer = AutoModelForTokenClassification.from_pretrained(os.getenv("NER_MODEL"))
 
         # Load custom models if specified
         if settings.CUSTOM_INTENT_MODEL:
-            self.custom_intent_tokenizer = pipeline("text-classification", model=settings.CUSTOM_INTENT_MODEL)
-            self.custom_intent_model = pipeline("text-classification", model=settings.CUSTOM_INTENT_MODEL)
+            self.custom_intent_tokenizer = DistilBertTokenizerFast.from_pretrained(os.getenv("TOKENIZER"))
+            self.intent_classifier = AutoModelForSequenceClassification.from_pretrained(os.getenv("INTENT_CLASSIFIER"))
+	    # self.custom_intent_tokenizer = pipeline("text-classification", model=settings.CUSTOM_INTENT_MODEL)
+            # self.custom_intent_model = pipeline("text-classification", model=settings.CUSTOM_INTENT_MODEL)
 
     # Detect the intent of the user's query.
     def detect_intent(self, query: str) -> str:
         try:
             sanitized_query = sanitize_input(query)
             inputs = self.tokenizer(query, padding=True, truncation=True, return_tensors="pt")
-            # outputs = self.nlp_model(**inputs)
+            outputs = self.nlp_model(**inputs)
             self.nlp_model(**inputs)
 
-            if settings.INTENT_CLASSIFICATION_MODEL:
-                return self._custom_intent_detection(sanitized_query)
+            if settings.INTENT_CLASSIFIER:
+                return self.intent_classifier(sanitized_query)
             else:
                 result = self.intent_classifier(sanitized_query)[0]
+                print("Intent classifier result: ", result)   # Check structure of 'result' variable
                 print(f"Detected intent: {result['label']}, Score: {result['score']}")
 
                 intent_threshold = getattr(settings, 'INTENT_CLASSIFICATION_THRESHOLD', 0.7)
@@ -54,18 +58,19 @@ class NLPEngine:
             return "unknown"
         except Exception as e:
             logger.error(f"Error in intent detection: {str(e)}")
-            return "unknown" 
+            # return "unknown"
+            raise 
 
     # Use a custom-trained model for intent detection.
     def _custom_intent_detection(self, query: str) -> str:
         inputs = self.custom_intent_tokenizer(query, padding=True, truncation=True, return_tensors="pt")
-        outputs = self.custom_intent_model(**inputs)
+        outputs = self.custom_classifier(**inputs)
         probs = outputs.logits.softmax(dim=-1)
         predicted_class = torch.argmax(probs).item()
         confidence = probs[0][predicted_class].item()
         
         if confidence > settings.CUSTOM_INTENT_MODEL:
-            return self.custom_intent_model.config.id2label[predicted_class]
+            return self.custom_classifier.config.id2label[predicted_class]
         return "unknown"
 
     def answer_question(self, context: str, question: str) -> Dict[str, Any]:
@@ -151,12 +156,13 @@ class NLPEngine:
         try:
             # This is a placeholder. In a real-world scenario, you might use a more sophisticated
             # language generation model like GPT-3 or a fine-tuned model for your specific use case.
-            answer = self.answer_question(context, query)
+            answer = self.nlp_model(context, query)
             return f"Based on the information provided, {answer['answer']}"
         except Exception as e:
             logger.error(f"Error in response generation: {str(e)}")
             return "I'm sorry, but I couldn't generate a response based on the given information."
 
+    '''
     def detect_language(self, text: str) -> str:
         """
         Detect the language of the given text.
@@ -168,6 +174,7 @@ class NLPEngine:
         except Exception as e:
             logger.error(f"Error in language detection: {str(e)}")
             return "unknown"
+    '''
 
     def calculate_similarity(self, text1: str, text2: str) -> float:
         """
@@ -203,8 +210,9 @@ class NLPEngine:
     def extract_entities(self, text: str) -> List[Dict[str, Any]]:
         try:
             # Assuming a pre-trained NER model is available
-            ner_model = pipeline("token-classification", model=settings.NER_MODEL, aggregation_strategy="simple")
-            entities = ner_model(text)
+            self.entity_recognizer = AutoModelForTokenClassification.from_pretrained("mdarhri00/named-entity-recognition")
+            # ner_model = pipeline("token-classification", model=settings.NER_MODEL, aggregation_strategy="simple")
+            entities = self.entity_recognizer(text)
             return [{"text": entity["word"], "start": entity["start"], "end": entity["end"], "type": entity["entity_group"]} for entity in entities]
         except Exception as e:
             logger.error(f"Error in entity extraction: {str(e)}")
@@ -213,8 +221,10 @@ class NLPEngine:
     # Generate text based on the given prompt using a language generation model.
     def generate_text(self, prompt: str, max_length: int = 50) -> str:
         try:
-            generator = pipeline("text-generation", model=settings.NLP_MODEL)
-            generated = generator(prompt, max_length=max_length, num_return_sequences=1)
+            self.nlp_model = AutoModelForMaskedLM.from_pretrained("distilbert/distilroberta-base")
+            generated = self.nlp_model(prompt, max_length=max_length, num_return_sequences=1)
+            # generator = pipeline("text-generation", model=settings.NLP_MODEL)
+            # generated = generator(prompt, max_length=max_length, num_return_sequences=1)
             return generated[0]['generated_text']
         except Exception as e:
             logger.error(f"Error in text generation: {str(e)}")

@@ -1,0 +1,91 @@
+2024-11-07 11:49:39,415 - backend.app.main - INFO - Main application module loaded successfully
+2024-11-07 11:50:49,470 - backend.app.main - INFO - Request: GET http://testserver/
+2024-11-07 11:50:49,473 - backend.app.main - INFO - Response: 200
+2024-11-07 11:50:49,476 - httpx - INFO - HTTP Request: GET http://testserver/ "HTTP/1.1 200 OK"
+2024-11-07 11:50:49,482 - backend.app.main - INFO - Request: GET http://testserver/health
+2024-11-07 11:50:49,484 - backend.app.main - INFO - Response: 200
+2024-11-07 11:50:49,486 - httpx - INFO - HTTP Request: GET http://testserver/health "HTTP/1.1 200 OK"
+2024-11-07 11:50:49,491 - backend.app.main - INFO - Request: POST http://testserver/api/chat
+2024-11-07 11:50:49,551 - backend.app.main - INFO - Response: 422
+2024-11-07 11:50:49,553 - httpx - INFO - HTTP Request: POST http://testserver/api/chat "HTTP/1.1 422 Unprocessable Entity"
+2024-11-07 11:50:49,666 - backend.app.main - INFO - Request: POST http://testserver/api/chat
+2024-11-07 11:50:49,670 - backend.app.main - INFO - Response: 422
+2024-11-07 11:50:49,672 - httpx - INFO - HTTP Request: POST http://testserver/api/chat "HTTP/1.1 422 Unprocessable Entity"
+2024-11-07 11:50:49,699 - backend.app.main - INFO - Request: POST http://testserver/api/feedback
+2024-11-07 11:50:49,703 - backend.app.data.storage - INFO - Stored feedback for query ID: test_query_id
+2024-11-07 11:50:49,704 - backend.app.main - INFO - Response: 200
+2024-11-07 11:50:49,706 - httpx - INFO - HTTP Request: POST http://testserver/api/feedback "HTTP/1.1 200 OK"
+2024-11-07 11:50:49,797 - backend.app.main - INFO - Request: POST http://testserver/api/login
+2024-11-07 11:50:49,799 - backend.app.main - INFO - Response: 404
+2024-11-07 11:50:49,801 - httpx - INFO - HTTP Request: POST http://testserver/api/login "HTTP/1.1 404 Not Found"
+2024-11-07 11:50:49,815 - backend.app.main - INFO - Request: POST http://testserver/api/login
+2024-11-07 11:50:49,816 - backend.app.main - INFO - Response: 404
+2024-11-07 11:50:49,818 - httpx - INFO - HTTP Request: POST http://testserver/api/login "HTTP/1.1 404 Not Found"
+2024-11-07 11:50:50,200 - backend.app.main - INFO - Request: GET http://testserver/api/protected
+2024-11-07 11:50:50,201 - backend.app.main - INFO - Response: 404
+2024-11-07 11:50:50,205 - httpx - INFO - HTTP Request: GET http://testserver/api/protected "HTTP/1.1 404 Not Found"
+2024-11-07 11:51:05,300 - backend.app.nlp.engine - ERROR - Error in intent detection: DistilBertTokenizerFast(name_or_path='AntoineMC/distilbart-mnli-github-issues', vocab_size=30522, model_max_length=512, is_fast=True, padding_side='right', truncation_side='right', special_tokens={'unk_token': '[UNK]', 'sep_token': '[SEP]', 'pad_token': '[PAD]', 'cls_token': '[CLS]', 'mask_token': '[MASK]'}, clean_up_tokenization_spaces=False),  added_tokens_decoder={
+	0: AddedToken("[PAD]", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),
+	100: AddedToken("[UNK]", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),
+	101: AddedToken("[CLS]", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),
+	102: AddedToken("[SEP]", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),
+	103: AddedToken("[MASK]", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),
+} got multiple values for keyword argument 'return_tensors'
+2024-11-07 11:51:05,504 - backend.app.nlp.engine - ERROR - Error in intent detection: DistilBertTokenizerFast(name_or_path='AntoineMC/distilbart-mnli-github-issues', vocab_size=30522, model_max_length=512, is_fast=True, padding_side='right', truncation_side='right', special_tokens={'unk_token': '[UNK]', 'sep_token': '[SEP]', 'pad_token': '[PAD]', 'cls_token': '[CLS]', 'mask_token': '[MASK]'}, clean_up_tokenization_spaces=False),  added_tokens_decoder={
+	0: AddedToken("[PAD]", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),
+	100: AddedToken("[UNK]", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),
+	101: AddedToken("[CLS]", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),
+	102: AddedToken("[SEP]", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),
+	103: AddedToken("[MASK]", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),
+} got multiple values for keyword argument 'return_tensors'
+2024-11-07 11:51:05,792 - backend.app.nlp.engine - ERROR - Error in intent detection: DistilBertTokenizerFast(name_or_path='AntoineMC/distilbart-mnli-github-issues', vocab_size=30522, model_max_length=512, is_fast=True, padding_side='right', truncation_side='right', special_tokens={'unk_token': '[UNK]', 'sep_token': '[SEP]', 'pad_token': '[PAD]', 'cls_token': '[CLS]', 'mask_token': '[MASK]'}, clean_up_tokenization_spaces=False),  added_tokens_decoder={
+	0: AddedToken("[PAD]", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),
+	100: AddedToken("[UNK]", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),
+	101: AddedToken("[CLS]", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),
+	102: AddedToken("[SEP]", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),
+	103: AddedToken("[MASK]", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),
+} got multiple values for keyword argument 'return_tensors'
+2024-11-07 11:51:05,817 - backend.app.nlp.engine - ERROR - Error in question answering: RobertaForQuestionAnswering.forward() got an unexpected keyword argument 'question'
+2024-11-07 12:06:22,910 - backend.app.data.storage - INFO - Stored interaction: test_query
+2024-11-07 12:06:22,931 - backend.app.nlp.semantic_search - ERROR - Error performing search: Index not built. Call build_index() first.
+2024-11-07 12:06:22,948 - backend.app.main - INFO - Request: GET http://testserver/non-existent-endpoint
+2024-11-07 12:06:22,949 - backend.app.main - INFO - Response: 404
+2024-11-07 12:06:22,951 - httpx - INFO - HTTP Request: GET http://testserver/non-existent-endpoint "HTTP/1.1 404 Not Found"
+2024-11-07 16:16:47,005 - backend.app.main - INFO - Main application module loaded successfully
+2024-11-07 16:16:48,501 - backend.app.main - INFO - Request: GET http://testserver/
+2024-11-07 16:16:48,502 - backend.app.main - INFO - Response: 200
+2024-11-07 16:16:48,503 - httpx - INFO - HTTP Request: GET http://testserver/ "HTTP/1.1 200 OK"
+2024-11-07 16:16:48,505 - backend.app.main - INFO - Request: GET http://testserver/health
+2024-11-07 16:16:48,506 - backend.app.main - INFO - Response: 200
+2024-11-07 16:16:48,507 - httpx - INFO - HTTP Request: GET http://testserver/health "HTTP/1.1 200 OK"
+2024-11-07 16:16:48,508 - backend.app.main - INFO - Request: POST http://testserver/api/chat
+2024-11-07 16:16:48,594 - backend.app.main - INFO - Response: 422
+2024-11-07 16:16:48,595 - httpx - INFO - HTTP Request: POST http://testserver/api/chat "HTTP/1.1 422 Unprocessable Entity"
+2024-11-07 16:16:48,739 - backend.app.main - INFO - Request: POST http://testserver/api/chat
+2024-11-07 16:16:48,741 - backend.app.main - INFO - Response: 422
+2024-11-07 16:16:48,742 - httpx - INFO - HTTP Request: POST http://testserver/api/chat "HTTP/1.1 422 Unprocessable Entity"
+2024-11-07 16:16:48,789 - backend.app.main - INFO - Request: POST http://testserver/api/feedback
+2024-11-07 16:16:48,790 - backend.app.data.storage - INFO - Stored feedback for query ID: test_query_id
+2024-11-07 16:16:48,791 - backend.app.main - INFO - Response: 200
+2024-11-07 16:16:48,791 - httpx - INFO - HTTP Request: POST http://testserver/api/feedback "HTTP/1.1 200 OK"
+2024-11-07 16:16:48,862 - backend.app.main - INFO - Request: POST http://testserver/api/login
+2024-11-07 16:16:48,863 - backend.app.main - INFO - Response: 404
+2024-11-07 16:16:48,864 - httpx - INFO - HTTP Request: POST http://testserver/api/login "HTTP/1.1 404 Not Found"
+2024-11-07 16:16:48,870 - backend.app.main - INFO - Request: POST http://testserver/api/login
+2024-11-07 16:16:48,870 - backend.app.main - INFO - Response: 404
+2024-11-07 16:16:48,871 - httpx - INFO - HTTP Request: POST http://testserver/api/login "HTTP/1.1 404 Not Found"
+2024-11-07 16:16:48,989 - backend.app.main - INFO - Request: GET http://testserver/api/protected
+2024-11-07 16:16:48,989 - backend.app.main - INFO - Response: 404
+2024-11-07 16:16:48,990 - httpx - INFO - HTTP Request: GET http://testserver/api/protected "HTTP/1.1 404 Not Found"
+2024-11-07 16:17:09,875 - backend.app.nlp.engine - ERROR - Missing setting in configuration: 'Settings' object has no attribute 'INTENT_CLASSIFIER'
+2024-11-07 16:17:10,074 - backend.app.nlp.engine - ERROR - Missing setting in configuration: 'Settings' object has no attribute 'INTENT_CLASSIFIER'
+2024-11-07 16:17:10,360 - backend.app.nlp.engine - ERROR - Missing setting in configuration: 'Settings' object has no attribute 'INTENT_CLASSIFIER'
+2024-11-07 16:17:10,364 - backend.app.nlp.engine - ERROR - Error in response generation: 'str' object has no attribute 'size'
+2024-11-07 16:17:13,373 - backend.app.nlp.engine - ERROR - Error in entity extraction: string indices must be integers, not 'tuple'
+2024-11-07 16:17:13,497 - backend.app.nlp.engine - ERROR - Error in sentiment analysis: string indices must be integers, not 'tuple'
+2024-11-07 16:17:13,500 - backend.app.nlp.engine - ERROR - Error in text summarization: BartForConditionalGeneration.forward() got an unexpected keyword argument 'max_length'
+2024-11-07 16:17:13,504 - backend.app.data.storage - INFO - Stored interaction: test_query
+2024-11-07 16:17:13,509 - backend.app.nlp.semantic_search - ERROR - Error performing search: Index not built. Call build_index() first.
+2024-11-07 16:17:13,514 - backend.app.main - INFO - Request: GET http://testserver/non-existent-endpoint
+2024-11-07 16:17:13,514 - backend.app.main - INFO - Response: 404
+2024-11-07 16:17:13,515 - httpx - INFO - HTTP Request: GET http://testserver/non-existent-endpoint "HTTP/1.1 404 Not Found"

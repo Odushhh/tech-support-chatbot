@@ -40,6 +40,9 @@ def test_health_check():
 
 def test_chat_endpoint():
     response = client.post("/api/chat", json={"query": "How does this work?"})
+    if response.status_code != 200:
+        print("Error details:", response.json())
+
     assert response.status_code == 200
     assert "response" in response.json()
     assert "intent" in response.json()
@@ -134,7 +137,6 @@ def test_entity_recognition():
     assert isinstance(entities, list)
     assert any(entity["type"] == "PRODUCT" for entity in entities)
 
-'''
 def test_sentiment_analysis():
     text = "I'm really happy with the service!"
     sentiment = nlp_engine.analyze_sentiment(text)
@@ -150,7 +152,6 @@ def test_language_detection():
     text = "Bonjour, comment allez-vous?"
     language = nlp_engine.detect_language(text)
     assert language == "fr"
-'''
     
 def test_data_storage():
     data_storage.store_interaction("test_query", "test_response")

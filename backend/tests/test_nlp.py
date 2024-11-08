@@ -79,7 +79,10 @@ def test_text_classification():
         ("Customer Feedback"),
         ("Customer Feedback")
     ]
-    predicted_label, confidence = nlp_engine.classify_text(text, labels)
+    predicted_label, confidence = nlp_engine.classify_text(texts, labels)
+    if confidence <= 0.5:
+        print(f"Debug: Predicted label: {predicted_label}, Confidence: {confidence}")
+
     assert predicted_label in labels, f"Expected one of {labels}, but got {predicted_label}."
     assert confidence > 0.5, "Expected confidence to be greater than 0.5."
     
@@ -135,11 +138,11 @@ def test_question_answering():
         ("When was the Eiffel Tower built?", "1887 to 1889")
     ]
     for question, expected_answer in questions:
-        answer = nlp_engine.answer_question(context, question)
+        result = nlp_engine.answer_question(context, question)
+        answer = result.get("answer", "")
         assert expected_answer.lower() in answer.lower(), f"Expected '{expected_answer}' in answer to '{question}', but got '{answer}'"
 
 
-'''
 # Extra functionality test
 def test_sentiment_analysis():
     positive_text = "I'm really happy with the excellent service I received!"
@@ -150,6 +153,7 @@ def test_sentiment_analysis():
     assert nlp_engine.analyze_sentiment(negative_text) == "negative"
     assert nlp_engine.analyze_sentiment(neutral_text) == "neutral"
 
+'''
 # Extra
 def test_language_detection():
     texts = [
@@ -162,6 +166,7 @@ def test_language_detection():
     for text, expected_lang in texts:
         detected_lang = nlp_engine.detect_language(text)
         assert detected_lang == expected_lang, f"Expected {expected_lang} for text '{text}', but got {detected_lang}"
+'''
 
 # Extra
 def test_text_summarization():
@@ -179,6 +184,7 @@ def test_text_summarization():
     assert "computers" in summary
     assert "language" in summary
 
+'''
 # Extra
 def test_named_entity_linking():
     text = "Apple Inc. was founded by Steve Jobs in Cupertino, California."
@@ -209,8 +215,8 @@ def test_grammar_checking():
     for incorrect, possible_corrections in texts:
         suggestions = nlp_engine.check_grammar(incorrect)
         assert any(correction in suggestions for correction in possible_corrections), f"Expected one of {possible_corrections} in suggestions for '{incorrect}', but got {suggestions}"
-
 '''
+
 
 
 # Model to run checks on all specified NLP functions at once
@@ -219,17 +225,17 @@ def test_nlp_pipeline():
     result = nlp_engine.process_text(text)
     
     assert "entities" in result
-    # assert "sentiment" in result
+    assert "sentiment" in result
     assert "keywords" in result
-    # assert "summary" in result
-    # assert "language" in result
+    assert "summary" in result
+    assert "language" in result
 
     assert any(entity["text"] == "Apple Inc." and entity["type"] == "ORGANIZATION" for entity in result["entities"])
-    # assert any(entity["text"] == "iPhone" and entity["type"] == "PRODUCT" for entity in result["entities"])
+    assert any(entity["text"] == "iPhone" and entity["type"] == "PRODUCT" for entity in result["entities"])
     assert result["sentiment"] in ["positive", "negative", "neutral"]
     assert "Apple" in result["keywords"] and "iPhone" in result["keywords"]
-    # assert len(result["summary"]) < len(text)
-    # assert result["language"] == "en"
+    assert len(result["summary"]) < len(text)
+    assert result["language"] == "en"
 
 if __name__ == "__main__":
     pytest.main([__file__])

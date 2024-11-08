@@ -24,7 +24,8 @@ class DataFetcher:
 
     def fetch_stackoverflow_data(self, query: str, limit: int = 5) -> List[Dict[str, Any]]:
         sanitized_query = self.sanitize_input(query)
-        url = f"https://api.stackexchange.com/2.2/search?order=desc&sort=activity&q={sanitized_query}&site=stackoverflow"
+        #url = f"https://api.stackexchange.com/2.2/search?order=desc&sort=activity&q={sanitized_query}&site=stackoverflow"
+        url = "https://api.stackexchange.com/2.3/questions?order=desc&sort=votes&tagged=python&site=stackoverflow&pagesize=10"
         response = requests.get(url)
 
         if response.status_code != 200:
@@ -42,6 +43,8 @@ class DataFetcher:
                 'question_id': item['question_id'],
                 'title': item['title'],
                 'link': item['link'],
+		'creation_date': item['creation_date'],
+		'tags': item['tags'],
                 'score': item['score']
                 # 'source': 'StackOverflow'
             }

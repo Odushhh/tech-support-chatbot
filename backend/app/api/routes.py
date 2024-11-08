@@ -3,9 +3,9 @@ from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 from typing import List, Optional
 from backend.app.core.chatbot import TechSupportChatbot
-from app.data.storage import DataStorage
-from nlp.engine import NLPEngine
-from utils.helpers import rate_limit, log_request
+from backend.app.data.storage import DataStorage
+from backend.app.nlp.engine import NLPEngine
+from backend.app.utils.helpers import rate_limit, log_request
 from backend.app.core.config import Settings
 from backend.app.data.fetcher import DataFetcher
 from dotenv import load_dotenv

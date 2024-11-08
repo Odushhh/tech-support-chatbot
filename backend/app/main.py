@@ -37,7 +37,11 @@ app.add_middleware(
 )
 
 # Mount static files
+<<<<<<< Updated upstream
 app.mount("tech-support-chatbot-v2/backend/app/static", StaticFiles(directory="tech-support-chatbot-v2/backend/app/static"), name="static")
+=======
+app.mount("/home/adrian-oduma/Desktop/Projects/ts-chatbot-v2/backend/app", StaticFiles(directory="/home/adrian-oduma/Desktop/Projects/ts-chatbot-v2/backend/app/static"), name="static")
+>>>>>>> Stashed changes
 
 # Include API routes
 app.include_router(api_router, prefix="/api")
@@ -100,9 +104,10 @@ async def chat(request: Request):
         # Process the query
         intent = nlp_engine.detect_intent(query)
         response = nlp_engine.generate_response(query, intent)
-        
+
         # Log the interaction
         data_storage.store_interaction(query, response)
+
         return {"response": response, "intent": intent}
     except Exception as e:
         logger.error(f"Error in chat endpoint: {str(e)}", exc_info=True)

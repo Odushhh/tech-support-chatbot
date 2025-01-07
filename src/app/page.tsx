@@ -1,4 +1,6 @@
 import { ThemeToggle } from './components/theme-toggle'
+import './globals.css'
+
 
 export default function Home() {
   return (

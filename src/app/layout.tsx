@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import { ThemeProvider } from './components/theme-provider'
+import './globals.css'
 
 export const metadata: Metadata = {
   title: 'Tech Support Chatbot',
@@ -14,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <script src="https://cdn.tailwindcss.com" />
+        
       </head>
       <body>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>

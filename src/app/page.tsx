@@ -9,8 +9,8 @@ export default function Home() {
       <div className="container mx-auto px-4 py-8">
         <header className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-800 dark:text-gray-100 mb-4">Customer Service Chatbot for Tech Support</h1>
-          <p className="text-xl text-gray-600 dark:text-gray-300">Hello! 👋 I'm your Tech Support Assistant, here to help with all software-related & programming questions.</p>
-          <p className="text-xl text-gray-600 dark:text-gray-300">Whether you're stuck coding or debugging, I'm here to assist. Let's get started! 🚀</p>
+          <p className="text-xl text-gray-600 dark:text-gray-300">Hello! 👋 I&apos;m your Tech Support Assistant, here to help with all software-related & programming questions.</p>
+          <p className="text-xl text-gray-600 dark:text-gray-300">Whether you&apos;re stuck coding or debugging, I&apos;m here to assist. Let&apos;s get started! 🚀</p>
         </header>
 
         <div className="max-w-3xl mx-auto bg-white dark:bg-gray-800 rounded-lg shadow-base p-6">

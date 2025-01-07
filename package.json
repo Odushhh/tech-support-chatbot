@@ -1,0 +1,10 @@
+{
+  "name": "customer-service-chatbot-for-tech-support",
+  "version": "1.1.1",
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
+  },
+  "scripts": {
+    "deploy": "gh-pages -d frontend"
+  }
+}

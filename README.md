@@ -72,7 +72,6 @@ Only the backend works for now, but A LOT of debugging is needed expeditiously.
 
    ```bash
    python -m venv venv
-
    
    - On Windows:
      venv\Scripts\activate

@@ -1,7 +1,8 @@
 # Customer Service Chatbot for Tech Support 
-## Still a Work in Progress - don't stress lemme finish it first :)
 
 For all software-related issues, troubleshooting needs, and general programming guidance (forked data from StackOverflow & GitHub Issues)
+
+[Tech Support Chatbot LIVE!] (https://techsupportchatbot.vercel.app/)
 
 ## Overview
 

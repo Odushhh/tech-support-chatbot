@@ -26,17 +26,24 @@ Only the backend works for now, but A LOT of debugging is needed expeditiously.
 - [Contributing](#contributing)
 - [License](#license)
 
-## Features
+## Capabilities
 
 - **Data Integration**: Fetches data from GitHub issues and StackOverflow questions.
 - **Natural Language Processing**: Uses NLP to understand user queries and provide relevant responses.
 - **Documentation Fetching**: Retrieves relevant documentation based on user queries.
 - **Troubleshooting Steps**: Provides troubleshooting steps for common issues.
 - **General Information**: Offers general information based on user queries.
+  
+## Features
+- **Smart Search**: Instantly searches developer forums and tech documentation for accurate solutions.
+- **Code-Aware**: Understands code snippets and errors to provide contextual debugging assistance.
+- **Vast Knowledge**: Leverages data from StackOverflow, GitHub, and the broader internet for comprehensive tech support.
+- **Pricing Tiers**: Offers a clear breakdown of pricing options for users.
+- **Waitlist Form**: Users can join the waitlist to gain early access to the chatbot.
 
 ## Technologies Used
 
-### Backend
+### Backend (check *master* branch)
 
 - Python 3.8.5
 - FastAPI
@@ -46,7 +53,7 @@ Only the backend works for now, but A LOT of debugging is needed expeditiously.
 - Pytest (for unit & integration testing)
 - Docker (for containerization)
 
-### Frontend (yet to decide)
+### Frontend (check *main* branch)
 
 - React.js, or
 - Streamlit, or
@@ -54,40 +61,40 @@ Only the backend works for now, but A LOT of debugging is needed expeditiously.
 
 ## Installation
 
-1. Clone the repository:
+1. Clone repo:
 
    ```bash
    git clone https://github.com/Odushhh/ts-chatbot-v2.git
    cd ts-chatbot-v2
    ```
 
-2. Create a virtual environment:
+2. Create and activate the virtualenv:
 
    ```bash
    python -m venv venv
-   ```
 
-3. Activate the virtual environment:
-
+   
    - On Windows:
-
-     ```bash
      venv\Scripts\activate
-     ```
+   
 
    - On macOS/Linux:
 
-     ```bash
      source venv/bin/activate
-     ```
+     
+   ```
 
-4. Install the required packages:
+
+
+   
+
+3. Install dependancies:
 
    ```bash
    pip install -r requirements.txt
    ```
 
-5. Set up environment variables. Create a `.env` file in the root directory and add your API keys:
+4. Check `.env` file for all keys, tokens, etc.:
 
    ```plaintext
    GITHUB_API_TOKEN=your_github_api_token
@@ -96,7 +103,7 @@ Only the backend works for now, but A LOT of debugging is needed expeditiously.
 
 ## Usage
 
-To run the application, use the following command:
+Run the application:
 
 ```bash
 uvicorn backend.app.main:app --reload
@@ -136,8 +143,6 @@ Contributions are welcome! Please follow these steps to contribute:
 ## Contact me! (please?)
 
 [LinkedIn](https://www.linkedin.com/in/adrian-oduma-4374a4252/)
+
 [Email][mailto:adrianoduma8@gmail.com]
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

@@ -12,12 +12,6 @@ logger = logging.getLogger(__name__)
 
 class NLPEngine:
     def __init__(self):
-        # self.intent_classifier = pipeline("sentiment-analysis", model=settings.INTENT_CLASSIFICATION_MODEL)
-        # self.qa_model = pipeline("question-answering", model=settings.QA_MODEL)
-        # self.sentiment_analyzer = pipeline("sentiment-analysis", model=settings.SENTIMENT_ANALYSIS_MODEL)
-        # self.summarizer = pipeline("summarization", model=settings.SUMMARIZATION_MODEL)
-        # self.sentence_transformer = SentenceTransformer(settings.SENTENCE_TRANSFORMER_MODEL)
-
         self.nlp_model = AutoModelForMaskedLM.from_pretrained(os.getenv("NLP_MODEL"))
         self.intent_classifier = AutoModelForSequenceClassification.from_pretrained(os.getenv("INTENT_CLASSIFIER"))
         self.tokenizer = DistilBertTokenizerFast.from_pretrained(os.getenv("TOKENIZER"))
@@ -31,8 +25,6 @@ class NLPEngine:
         if settings.CUSTOM_INTENT_MODEL:
             self.custom_intent_tokenizer = DistilBertTokenizerFast.from_pretrained(os.getenv("TOKENIZER"))
             self.intent_classifier = AutoModelForSequenceClassification.from_pretrained(os.getenv("INTENT_CLASSIFIER"))
-	    # self.custom_intent_tokenizer = pipeline("text-classification", model=settings.CUSTOM_INTENT_MODEL)
-            # self.custom_intent_model = pipeline("text-classification", model=settings.CUSTOM_INTENT_MODEL)
 
     # Detect the intent of the user's query.
     def detect_intent(self, query: str) -> str:
